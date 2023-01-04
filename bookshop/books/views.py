@@ -23,7 +23,7 @@ class BookGetAll(ListAPIView):
         books = Book.objects.all()
         soz = self.request.query_params.get("search")
         if soz is not None:
-            books = Book.objects.filter(title__contains=soz)
+            books = Book.objects.filter(title__contains=soz)[:10]
             for i in books:
                 i.searchCount = i.searchCount + 1
                 i.save()
